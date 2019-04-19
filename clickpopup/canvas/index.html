@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible"
+          content="ie=edge">
+    <title>canvas</title>
+    <style>
+      body {
+        margin: 0;
+      }
+
+      #box {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-color: RGBA(41, 44, 52, 1.00);
+      }
+
+      #wrapper {
+        width: 500px;
+        height: 500px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        background-color: RGBA(172, 147, 107, 1.00);
+        cursor: pointer;
+      }
+
+      #canvas {
+        background-color: white;
+        width: 500px;
+        height: 500px;
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <div id="box">
+      <div id="wrapper">
+        <canvas id="canvas"></canvas>
+      </div>
+    </div>
+    <script>
+      var $box = document.getElementById('box');
+      var $wrapper = document.getElementById('wrapper');
+      var $canvas = document.getElementById('canvas');
+      var zIndex = 100;
+      $canvas.onclick = function (e) {
+        console.log(e);
+        let tip = createPopup(zIndex++, e);
+        $wrapper.appendChild(tip);
+        setTimeout(function () {
+          $wrapper.removeChild(tip);
+        }, 5000);
+      }
+      function createPopup(msg, e) {
+        let $popup = document.createElement('div');
+        console.log(e.offsetX, e.offsetY);
+        /*
+        let style = $popup.style;
+        style.position = 'absolute';
+        style.left = `${e.offsetX}px`;
+        style.top = `${e.offsetY}px`;
+        style.display = 'inline-block';
+        style.border = '2px solid gray';
+        style.backgroundColor = 'white';
+        style.padding = '5px';
+        style.borderRadius = '10px';
+        style.zIndex = ++zIndex;
+        */
+        $popup.style.cssText = `position: absolute; left:${e.offsetX}px; top:${e.offsetY}px; display: inline-block; border: 1px solid gray; background-color: white; padding: 2px; border-radius: 10px; z-index: ${zIndex}; transform: translate(-50%, -100%); user-select: none;`
+        $popup.innerText = msg;
+        console.log($popup);
+        return $popup;
+      }
+    </script>
+  </body>
+
+</html>
