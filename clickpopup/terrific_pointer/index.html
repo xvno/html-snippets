@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible"
+          content="ie=edge">
+    <title>canvas</title>
+    <style>
+      body {
+        margin: 0;
+      }
+
+      #box {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-color: RGBA(41, 44, 52, 1.00);
+      }
+
+      #wrapper {
+        width: 500px;
+        height: 500px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        background-color: RGBA(172, 147, 107, 1.00);
+        cursor: pointer;
+      }
+
+      #canvas {
+        background-color: white;
+        width: 500px;
+        height: 500px;
+      }
+
+      .pop {
+        position: absolute;
+        font-size: 12px;
+        line-height: 1.5em;
+        padding: 0.3em;
+        color: RGBA(224, 188, 126, 1.00);
+        background-color: RGBA(40, 44, 52, 1.00);
+        box-shadow: 0 0 .5em #5d656c;
+        border-radius: 0.25em;
+        transform: translate(-50%, -100%);
+        user-select: none;
+      }
+
+      .evap {
+        animation: evaporation 3s ease-in-out .5s;
+        animation-fill-mode: forwards;
+      }
+
+      @keyframes evaporation {
+        0% {
+          opacity: 100%;
+        }
+
+        100% {
+          transform: translate(-50%, -300%);
+          opacity: 0;
+          visibility: hidden;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <div id="box">
+      <div id="wrapper">
+        <canvas id="canvas"></canvas>
+      </div>
+    </div>
+    <script>
+      var $box = document.getElementById('box');
+      var $wrapper = document.getElementById('wrapper');
+      var $canvas = document.getElementById('canvas');
+      var zIndex = 100;
+      $canvas.onclick = function (e) {
+        console.log(e);
+        let tip = createPopup(zIndex++, e);
+        $wrapper.appendChild(tip);
+        setTimeout(function () {
+          $wrapper.removeChild(tip);
+        }, 5000);
+      }
+      function createPopup(msg, e) {
+        let $popup = document.createElement('div');
+        console.log(e.offsetX, e.offsetY);
+        $popup.style.cssText = `
+          left:${e.offsetX}px; \
+          top:${e.offsetY}px; \
+          z-index: ${zIndex};
+        `;
+        $popup.innerText = msg;
+        $popup.classList.add('pop');
+        $popup.classList.add('evap');
+        console.log($popup);
+        return $popup;
+      }
+    </script>
+  </body>
+
+</html>

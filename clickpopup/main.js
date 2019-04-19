@@ -11,8 +11,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // app.use(express.static(path.resolve(__dirname, './canvas')));
 
 app.get('/', (req, res) => {
+  res.sendFile(path.resolve(__dirname, './terrific_pointer/index.html'));
+});
+app.get('/blank', (req, res) => {
   res.sendFile(path.resolve(__dirname, './canvas/index.html'));
 });
+
 
 const port = 8888;
 app.listen(port, () => {
