@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible"
+          content="ie=edge">
+    <title>site: A</title>
+    <link rel="stylesheet"
+          href="./styles/ab.css">
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="wrapper">
+        <input type="text"
+               name="msg"
+               id="msg">
+        <button id="send"
+                class="send">Send</button>
+      </div>
+      <div class="wrapper">
+        <ul id="log">
+          <li>message logs</li>
+        </ul>
+      </div>
+    </div>
+    <iframe id="bridge"
+            src="http://localhost:8000/"
+            frameborder="0"></iframe>
+    <script src="./scripts/cmn.js"></script>
+    <script>console.log(window.origin);</script>
+  </body>
+
+</html>

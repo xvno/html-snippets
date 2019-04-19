@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>bridge</title>
+  </head>
+
+  <body>
+    <script>
+      const receiver = window.parent;
+      const bc = new BroadcastChannel('bridge');
+      bc.onmessage = function (e) {
+        let msg = e.data;
+        if (msg.length > 0) {
+          window.parent.postMessage(msg, '*'); // MMP的第二个参数, 麻辣鸡!
+        }
+      };
+      bc.onmessageerror = function (e) {
+        console.warn('error:', e);
+      };
+      window.onmessage = function (e) {
+        let msg = e.data;
+        if (msg.length > 0) {
+          console.log(msg)
+          bc.postMessage(msg);
+        }
+      };
+    </script>
+  </body>
+
+</html>
