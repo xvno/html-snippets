@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible"
+          content="ie=edge">
+    <title>postMessage</title>
+    <style>
+      body {
+        margin: 0;
+      }
+
+      .wrapper {
+        display: flex;
+        align-items: stretch;
+        justify-content: stretch;
+        padding: 2em;
+      }
+
+      .wrapper>input[type="text"] {
+        font-size: 14px;
+        height: 2em;
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+        outline-color: aquamarine;
+        flex-grow: 1;
+      }
+
+      .wrapper>.button {
+        flex-grow: 0;
+        margin-left: 2em;
+      }
+
+      iframe {
+        width: 100%;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <input type="text"
+             name="msg"
+             id="msg">
+      <button id="send"
+              class="send">Send</button>
+    </div>
+    <div class="wrapper">
+      <ul id="log">
+        <li>message logs</li>
+      </ul>
+    </div>
+
+    <script src="./scripts/cmn.js"></script>
+    <script>
+
+    </script>
+  </body>
+
+</html>
